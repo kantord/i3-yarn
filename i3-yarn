@@ -6,4 +6,6 @@ if [ ! -f "package.json" ]; then
 fi
 
 chosen_command=$(cat package.json | emuto '.scripts | keys' -o raw | rofi -dmenu -matching fuzzy)
-i3-sensible-terminal -e "bash -c \"yarn $chosen_command; $SHELL\"" --hold
+if [ -n "$chosen_command" ]; then
+	i3-sensible-terminal -e "bash -c \"yarn $chosen_command; $SHELL\"" --hold
+fi
