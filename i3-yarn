@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ ! -f "package.json" ]; then
+	i3-nagbar -m "No package.json found in this i3-env"
+	exit 1
+fi
+
+chosen_command=$(cat package.json | emuto '.scripts | keys' -o raw | rofi -dmenu)
+i3-sensible-terminal -e "yarn $chosen_command; $SHELL"
