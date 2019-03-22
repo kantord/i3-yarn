@@ -5,5 +5,5 @@ if [ ! -f "package.json" ]; then
 	exit 1
 fi
 
-chosen_command=$(cat package.json | emuto '.scripts | keys' -o raw | rofi -dmenu)
-i3-sensible-terminal -e "yarn $chosen_command; $SHELL"
+chosen_command=$(cat package.json | emuto '.scripts | keys' -o raw | rofi -dmenu -matching fuzzy)
+i3-sensible-terminal -e "bash -c \"yarn $chosen_command; $SHELL\"" --hold
